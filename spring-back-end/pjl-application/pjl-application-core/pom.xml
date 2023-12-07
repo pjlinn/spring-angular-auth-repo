@@ -12,7 +12,7 @@
     <artifactId>pjl-application-core</artifactId>
 
     <properties>
-        <start-class>com.pjlsoftware.main.SpringBackEndApplication</start-class>
+        <start-class>com.pjlsoftware.SpringBackEndApplication</start-class>
         <!--        -->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -62,7 +62,7 @@
 
                 <configuration>
                     <addResources>true</addResources>
-                    <mainClass>com.pjlsoftware.main.SpringBackEndApplication</mainClass>
+                    <mainClass>com.pjlsoftware.SpringBackEndApplication</mainClass>
                     <skip>false</skip>
                 </configuration>
                 <executions>

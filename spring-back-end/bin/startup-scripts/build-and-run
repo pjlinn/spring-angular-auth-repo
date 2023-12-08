@@ -10,7 +10,7 @@ ENV_CONFIG_FILE="${SCRIPT_DIR}/../.env"
 ############################################################
 help() {
   echo ""
-  echo -e "Composite script that will run the build and run scripts together." | fmt
+  echo -e "Composite script that will run the build and run scripts." | fmt
   echo ""
   echo -e "Usage: $0 [-h] | [-p profile]" | fmt
   echo -e "\t-h\t Display this help message" | fmt

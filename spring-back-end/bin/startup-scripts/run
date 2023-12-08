@@ -10,11 +10,11 @@ ENV_CONFIG_FILE="${SCRIPT_DIR}/../.env"
 ############################################################
 help() {
   echo ""
-  echo -e "Run the Spring-Boot JAR locally." | fmt
-  echo -e "E.g. mvnw clean package -Dmaven.test.skip"
+  echo -e "Run the Spring-Boot jar locally." | fmt
   echo ""
-  echo -e "Usage: $0 [-h]" | fmt
+  echo -e "Usage: $0 [-h] | [-p profile]" | fmt
   echo -e "\t-h\t Display this help message" | fmt
+  echo -e "\t-p\t Spring-Boot profile you want to use. Default is local." | fmt
   echo ""
 }
 
@@ -24,11 +24,18 @@ help() {
 ############################################################
 ############################################################
 
-while getopts "h" opt; do
+PROFILE="local"
+
+while getopts "hp:" opt; do
   case $opt in
   h)
     help
     exit 0
+    ;;
+  p)
+    PROFILE=${OPTARG}
+    echo "Setting Spring profile to ${PROFILE}"
+    echo
     ;;
   \?)
     echo "Invalid option: -$OPTARG" >&2
@@ -43,3 +50,5 @@ while getopts "h" opt; do
     ;;
   esac
 done
+
+java -Dspring.profiles.active="${PROFILE}" -jar "${SCRIPT_DIR}"/../../pjl-application/pjl-application-core/target/pjl-application-core.jar

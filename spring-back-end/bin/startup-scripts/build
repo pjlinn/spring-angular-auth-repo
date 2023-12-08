@@ -5,6 +5,9 @@ ENV_CONFIG_FILE="${SCRIPT_DIR}/../.env"
 
 . "${ENV_CONFIG_FILE}"
 
+# Put the script in the required location to run mvnw and access the pom.xml file.
+cd "${SCRIPT_DIR}"/../.. || exit
+
 ############################################################
 # Help                                                     #
 ############################################################

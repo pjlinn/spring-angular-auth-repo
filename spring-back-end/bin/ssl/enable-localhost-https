@@ -53,6 +53,19 @@ while getopts "h" opt; do
   esac
 done
 
+echo
+read -r -p "Delete all files in ${SSL_KEYSTORE_DIR}?"
+select yn in "Yes" "No"; do
+  case $yn in
+  Yes)
+    rm "${SSL_KEYSTORE_DIR}"/*
+    break
+    ;;
+  No) ;;
+  esac
+done
+echo
+
 RSA_KEY_NAME=rootCA.key
 DAYS_VALID=90
 ROOT_SSL_CERT_PEM_NAME=rootCA.pem
@@ -112,8 +125,6 @@ echo -e "Create a ${V3_EXT_FILENAME} file in order to create a X509 v3 certifica
 echo
 
 cat <<'EOF' >"${SSL_KEYSTORE_DIR}"/"${V3_EXT_FILENAME}"
-[req]
-authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
 subjectAltName = @alt_names
@@ -159,7 +170,8 @@ echo -e "
 \tserver.port=8443
 
 \tserver.ssl.enabled=true
-\tserver.ssl.key-store-type=PKCS12
+\tserver.ssl.key-alias=${P12_ALIAS}
+\tserver.ssl.key-password=<password you've been using>
 \tserver.ssl.key-store=classpath:keystore/${P12_FILE}
 \tserver.ssl.key-store-password=<password you've been using>"
 echo

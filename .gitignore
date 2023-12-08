@@ -14,4 +14,6 @@
 # Logs
 *.log
 
-
+# IDE
+.idea
+*.iml

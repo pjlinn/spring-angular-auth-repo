@@ -96,8 +96,15 @@ openssl req -x509 -new -nodes -key "${RSA_KEY_NAME}" -sha256 -days ${DAYS_VALID}
 
 echo
 echo -e "NOW YOU MUST TAKE A MANUAL STEP:" | fmt
+echo -e "We need to add the root certificate to any laptops, desktops, tablets, and phones that will be accessing your HTTPS sites once." | fmt
 echo
+echo -e "For Mac Users" | fmt
 echo -e "Open Keychain Access on your Mac and go to the Certificates category in your System keychain. Once there, import the ${ROOT_SSL_CERT_PEM_NAME} using File > Import Items. Double click the imported certificate and change the 'When using this certificate:' dropdown to 'Always Trust' in the 'Trust' section." | fmt
+echo
+echo -e "For None Mac Users" | fmt
+echo -e "Search how to manage certificates in your browser of choice and upload the ${ROOT_SSL_CERT_PEM_NAME} to Trusted Root Certificates." | fmt
+echo
+echo -e "In Chrome for example, open settings and search 'certificates'. Click 'Security' and then click 'Manage Certificates'. On my Mac, this will open Keychain, not sure what happens on other operating systems, but this is where you'll want to add the ${ROOT_SSL_CERT_PEM_NAME} to trust the file." | fmt
 
 echo
 read -r -p "Press enter to continue once you've followed the manual step above. ctrl-c to quit."
